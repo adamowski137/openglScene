@@ -6,8 +6,11 @@ class SmoothObject : public Object
 private:
 	float* controlPoints;
 	int controlPointsNumber;
-	int amountOfTriangles;
+	int amountOfTrianglesRow;
+	int amountOfTrianglesColumn;
+
+	std::vector<glm::vec3> generateGrid();
 public:
-	SmoothObject(int controlPointsNumber, int amountOfTriangles);
+	SmoothObject(int controlPointsNumber, int amountOfTrianglesRow, int amountOfTrianglesColumn);
 	~SmoothObject();
 };
