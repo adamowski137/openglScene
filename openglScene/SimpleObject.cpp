@@ -1,9 +1,17 @@
 #include "SimpleObject.hpp"
+#include "Texture.hpp"
+#include "Shader.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-SimpleObject::SimpleObject(std::vector<glm::vec3> coordinates, std::vector<glm::vec3> color, std::vector<glm::vec2> texture, glm::vec3 position)
-	: coordinates{ coordinates }, color{ color }, texture{ texture } 
+SimpleObject::SimpleObject(std::vector<glm::vec3> coordinates, std::vector<glm::vec3> color, 
+	std::vector<glm::vec2> texture, glm::vec3 position, const char* path)
+	: Object{position, path}, coordinates { coordinates }, color{ color }, texture{ texture }
 {
-	this->position = position;
+	int n = getVAOSize();
+	float* vert = getObjectVAO();
+	vao.bufferData(n, vert, GL_STATIC_DRAW);
+	free(vert);
 }
 
 int SimpleObject::getVertexSize()
@@ -13,7 +21,7 @@ int SimpleObject::getVertexSize()
 
 int SimpleObject::getVAOSize()
 {
-	return 8 * coordinates.size();
+	return 8 * coordinates.size() * sizeof(float);
 }
 
 float* SimpleObject::getObjectVAO()

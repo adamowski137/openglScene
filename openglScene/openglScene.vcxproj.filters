@@ -9,19 +9,19 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="textures">
       <UniqueIdentifier>{ecf4bc46-19b3-460e-ab2c-53ec269d1f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki Zewnętrzne">
+      <UniqueIdentifier>{860fd044-2e56-4d1d-9b14-08c4d293292e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shadery">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
@@ -36,21 +36,27 @@
     <ClCompile Include="SmoothObject.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Pliki Zewnętrzne</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="glad.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="khrplatform.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Object.hpp">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Camera.hpp">
@@ -62,13 +68,34 @@
     <ClInclude Include="SimpleObject.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="VAO.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="VBO.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="glad.h">
+      <Filter>Pliki Zewnętrzne</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Pliki Zewnętrzne</Filter>
+    </ClInclude>
+    <ClInclude Include="khrplatform.h">
+      <Filter>Pliki Zewnętrzne</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.glsl">
-      <Filter>Pliki zasobów</Filter>
+      <Filter>Shadery</Filter>
     </None>
     <None Include="vertex.glsl">
-      <Filter>Pliki zasobów</Filter>
+      <Filter>Shadery</Filter>
+    </None>
+    <None Include="Texture.hpp">
+      <Filter>Pliki nagłówkowe</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

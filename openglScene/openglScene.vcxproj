@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,6 +138,10 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SimpleObject.cpp" />
     <ClCompile Include="SmoothObject.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
@@ -148,9 +152,13 @@
     <ClInclude Include="SimpleObject.hpp" />
     <ClInclude Include="SmoothObject.hpp" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Utils.hpp" />
+    <ClInclude Include="VAO.hpp" />
+    <ClInclude Include="VBO.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.glsl" />
+    <None Include="Texture.hpp" />
     <None Include="vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
