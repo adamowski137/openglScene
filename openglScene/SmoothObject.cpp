@@ -13,6 +13,10 @@ SmoothObject::SmoothObject(int controlPointsRow, int controlPointsColumn, int am
 	amountOfTrianglesColumn{amountOfTrianglesColumn}
 {
 	controlPoints = new float[controlPointsRow * controlPointsColumn];
+	for (int i = 0; i < controlPointsRow * controlPointsColumn; i++)
+	{
+		controlPoints[i] = (rand() % 157) / 157.0f;
+	}
 	int n = getVAOSize();
 	float* vert = getObjectVAO();
 	vao.bufferData(n, vert, GL_STATIC_DRAW);
@@ -33,22 +37,21 @@ std::vector<glm::vec3> SmoothObject::generateGrid()
 {
 	std::vector<glm::vec3> grid{};
 
-
 	for (int i = 0; i < (amountOfTrianglesColumn - 1); i++)
 	{
-		float y = static_cast<float>(i) * (0.5f / static_cast<float>(amountOfTrianglesColumn));
-		float ynext = static_cast<float>(i+1) * (0.5f / static_cast<float>(amountOfTrianglesColumn));
+		float y = static_cast<float>(i) * (1.0f / static_cast<float>(amountOfTrianglesColumn));
+		float ynext = static_cast<float>(i+1) * (1.0f / static_cast<float>(amountOfTrianglesColumn));
 		for (int j = 0; j < amountOfTrianglesRow - 1; j++)
 		{
-			float x = static_cast<float>(j) * (0.5f / static_cast<float>(amountOfTrianglesRow));
-			float xnext = static_cast<float>(j+1) * (0.5f / static_cast<float>(amountOfTrianglesRow));
-			grid.push_back(glm::vec3{ x, y, calculateZ(x, y)});
-			grid.push_back(glm::vec3{ x, ynext, calculateZ(x, ynext) });
-			grid.push_back(glm::vec3{ xnext, y, calculateZ(xnext, y) });
+			float x = static_cast<float>(j) * (1.0f / static_cast<float>(amountOfTrianglesRow));
+			float xnext = static_cast<float>(j+1) * (1.0f / static_cast<float>(amountOfTrianglesRow));
+			grid.push_back(glm::vec3{ x, calculateZ(x, y), y});
+			grid.push_back(glm::vec3{ x, calculateZ(x, ynext), ynext });
+			grid.push_back(glm::vec3{ xnext, calculateZ(xnext, y), y });
 
-			grid.push_back(glm::vec3{ xnext, ynext, calculateZ(xnext, ynext) });
-			grid.push_back(glm::vec3{ x, ynext, calculateZ(x, ynext) });
-			grid.push_back(glm::vec3{ xnext, y, calculateZ(xnext, y) });
+			grid.push_back(glm::vec3{ xnext, calculateZ(xnext, ynext), ynext });
+			grid.push_back(glm::vec3{ x, calculateZ(x, ynext), ynext });
+			grid.push_back(glm::vec3{ xnext, calculateZ(xnext, y), y});
 		}
 	}
 
@@ -67,7 +70,7 @@ float SmoothObject::calculateZ(float x, float y)
 		}
 	}
 
-	return fminf(1.0f, sum);
+	return fmaxf(0.0f, fminf(1.0f, sum));
 }
 
 float SmoothObject::B(int i, int n, float t)
@@ -75,7 +78,8 @@ float SmoothObject::B(int i, int n, float t)
 	float fn = static_cast<float>(n);
 	float fi = static_cast<float>(i);
 
-	return (tgammaf(fn) / (tgammaf(fn - fi) * tgammaf(fi))) * powf(t, fi) * powf(1 - t, fn - fi);
+	float r = (tgammaf(fn) / (tgammaf(fn - fi) * tgammaf(fi))) * powf(t, fi) * powf(1 - t, fn - fi);
+	return r;
 }
 
 int SmoothObject::getVAOSize()
