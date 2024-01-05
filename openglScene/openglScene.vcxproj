@@ -131,10 +131,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glad/include;glfw-3.3.9.bin.WIN64\include;glm-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SimpleObject.cpp" />
     <ClCompile Include="SmoothObject.cpp" />
@@ -145,9 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="Engine.hpp" />
     <ClInclude Include="glad.h" />
     <ClInclude Include="khrplatform.h" />
+    <ClInclude Include="LightSource.hpp" />
     <ClInclude Include="Object.hpp" />
+    <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Shader.hpp" />
     <ClInclude Include="SimpleObject.hpp" />
     <ClInclude Include="SmoothObject.hpp" />
@@ -157,9 +163,15 @@
     <ClInclude Include="VBO.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment.glsl" />
+    <None Include="light_fragment.glsl" />
+    <None Include="light_vertex.glsl" />
+    <None Include="simple_fragment.glsl" />
+    <None Include="simple_vertex.glsl" />
+    <None Include="smooth_fragment.glsl" />
+    <None Include="smooth_tcs.glsl" />
+    <None Include="smooth_tes.glsl" />
     <None Include="Texture.hpp" />
-    <None Include="vertex.glsl" />
+    <None Include="smooth_vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="container.jpg" />

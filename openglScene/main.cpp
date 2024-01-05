@@ -1,12 +1,11 @@
 #pragma once
 #define STB_IMAGE_IMPLEMENTATION
-#include "SimpleObject.hpp"
-#include "Shader.hpp"
 #include "Camera.hpp"
 #include "Texture.hpp"
-#include "Utils.hpp"
+#include "Engine.hpp"
 
 #include <vector>
+#include <iostream>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -40,6 +39,7 @@ GLenum glCheckError_(const char* file, int line)
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -60,10 +60,9 @@ int main(void)
 
     GLFWwindow* window;
 
-
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
@@ -77,9 +76,9 @@ int main(void)
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetScrollCallback(window, scroll_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
 
-
-
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     /* Make the window's context current */
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -87,16 +86,7 @@ int main(void)
         return -1;
     }
 
-    glEnable(GL_DEPTH_TEST);
-
-    Shader shader{ "vertex.glsl", "fragment.glsl" };
-
-    
-    //SimpleObject object = Utils::generateBox(glm::vec3(0.0f, 0.0f, 0.0f), "wall.jpg");
-    SmoothObject object = Utils::generateBezier(glm::vec3(0.0f, 0.0f, 0.0f), "wall.jpg", 10);
-    
-    shader.use();
-    shader.setInt("texture1", 0);
+    Engine engine{SCR_WIDTH, SCR_HEIGHT};
 
 
     while (!glfwWindowShouldClose(window))
@@ -112,27 +102,8 @@ int main(void)
 
         // render
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
+        engine.render(camera.GetViewMatrix(), camera.Position);
 
-        // bind textures on corresponding texture units
-        object.bindTexture();
-
-        // render the triangle
-        shader.use();
-
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        shader.setMat4("projection", projection);
-
-        // camera/view transformation
-        glm::mat4 view = camera.GetViewMatrix();
-        shader.setMat4("view", view);
-
-        // render object
-        object.renderObject(shader);
-
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -161,14 +132,14 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-        camera.ProcessMouseMovement(0, 2);
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-        camera.ProcessMouseMovement(0, -2);
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-        camera.ProcessMouseMovement(2, 0);
-    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-        camera.ProcessMouseMovement(-2, 0);
+    //if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    //    camera.ProcessMouseMovement(0, 2);
+    //if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    //    camera.ProcessMouseMovement(0, -2);
+    //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+    //    camera.ProcessMouseMovement(2, 0);
+    //if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+    //    camera.ProcessMouseMovement(-2, 0);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -179,6 +150,28 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
 
 
 

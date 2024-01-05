@@ -11,12 +11,19 @@ SimpleObject::SimpleObject(std::vector<glm::vec3> coordinates, std::vector<glm::
 	int n = getVAOSize();
 	float* vert = getObjectVAO();
 	vao.bufferData(n, vert, GL_STATIC_DRAW);
-	free(vert);
+	delete vert;
 }
 
 int SimpleObject::getVertexSize()
 {
 	return coordinates.size();
+}
+
+void SimpleObject::renderObject()
+{
+	vao.bindVAO();
+
+	glDrawArrays(GL_TRIANGLES, 0, getVertexSize());
 }
 
 int SimpleObject::getVAOSize()

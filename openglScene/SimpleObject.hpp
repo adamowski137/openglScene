@@ -15,6 +15,8 @@ private:
 	float* getObjectVAO() override;
 
 public:
-	SimpleObject(std::vector<glm::vec3> coordinates, std::vector<glm::vec3> color, std::vector<glm::vec2> texture, glm::vec3 position, const char* path);
+	SimpleObject(std::vector<glm::vec3> coordinates, std::vector<glm::vec3> color, std::vector<glm::vec2> texture, 
+		glm::vec3 position, const char* path);
 	int getVertexSize()	override;
+	void renderObject() override;
 };

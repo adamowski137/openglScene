@@ -16,26 +16,26 @@ protected:
 	VAO vao;
 	VBO vbo;
 public:
-	Object(glm::vec3 position, const char* path) {
+	Object(glm::vec3 position, const char* path)
+	{
 		this->position = position;
-		textureId = Texture::loadTexture(path);
+		if(path != NULL)	textureId = Texture::loadTexture(path);
 		vao.bindVAO();
 		vbo.bindVBO();
 	};
 
 	virtual int getVertexSize() = 0;
+	virtual void renderObject() = 0;
 	
-	glm::vec3 position;
-	void renderObject(Shader& shader) {
-		vao.bindVAO();
+	glm::mat4 getModel()
+	{
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, position);
 		float angle = 20.0f;
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-		shader.setMat4("model", model);
+		return model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+	}
 
-		glDrawArrays(GL_TRIANGLES, 0, getVertexSize());
-	};
+	glm::vec3 position;
 	void bindVAO() { vao.bindVAO(); }
 	void bindTexture(){
 		glActiveTexture(GL_TEXTURE0);
