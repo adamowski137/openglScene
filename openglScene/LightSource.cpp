@@ -6,7 +6,13 @@ LightSource::LightSource(LightArguments args, std::vector<glm::vec3> coordinates
 	lightArgs = args;
 	int n = getVAOSize();
 	float* vert = getObjectVAO();
-	vao.bufferData(n, vert, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, n, &vert[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, false, sizeof(float) * 8, (void*)(sizeof(float) * 3));
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(2, 2, GL_FLOAT, false, sizeof(float) * 8, (void*)(sizeof(float) * 6));
 	delete vert;
 }
 
@@ -49,4 +55,9 @@ void LightSource::renderObject()
 	vao.bindVAO();
 
 	glDrawArrays(GL_TRIANGLES, 0, getVertexSize());
+}
+
+void LightSource::setColor(glm::vec3 color)
+{
+	lightArgs.color = color;
 }

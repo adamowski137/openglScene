@@ -137,7 +137,7 @@ SimpleObject* Utils::generateBox(glm::vec3 position, const char* texturePath)
 
 SmoothObject* Utils::generateBezier(glm::vec3 position, const char* texturePath, int triangles)
 {
-    return new SmoothObject(triangles, triangles, position, texturePath);
+    return new SmoothObject(triangles, position, texturePath);
 }
 
 LightSource* Utils::generateLightSource(glm::vec3 position)

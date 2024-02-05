@@ -8,6 +8,13 @@ struct LightArguments {
 	float strength;
 };
 
+struct ReflectorArguments {
+	glm::vec3 position;
+	glm::vec3 color;
+	glm::vec3 direction;
+	float cutOff;
+};
+
 class LightSource : public Object
 {
 private:
@@ -21,4 +28,5 @@ public:
 	LightArguments getLightArguments();
 	int getVertexSize()	override;
 	void renderObject() override;
+	void setColor(glm::vec3 color);
 };

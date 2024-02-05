@@ -11,5 +11,4 @@ public:
 	VAO();
 	~VAO();
 	void bindVAO();
-	void bufferData(int vaoSize, void* vertices, GLenum usage);
 };

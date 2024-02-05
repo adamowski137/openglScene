@@ -22,6 +22,18 @@
     <Filter Include="Models">
       <UniqueIdentifier>{f9312190-e0d8-4de3-a8a5-6ac4baee0dcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{1a70b08b-c868-41e1-b55d-30d69d4185a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{38655d6c-283c-4ef9-bde4-ea6442ee787b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{0e2be86a-d575-4306-b1b6-ca21a0f0e0f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{33db58b4-b47f-497f-a6ae-25ec9fb2f7ca}</UniqueIdentifier>
+    </Filter>
     <Filter Include="View">
       <UniqueIdentifier>{99509c9c-2700-4d27-b6b9-935e0fc06ee8}</UniqueIdentifier>
     </Filter>
@@ -45,19 +57,7 @@
     <ClCompile Include="Engine.cpp">
       <Filter>View</Filter>
     </ClCompile>
-    <ClCompile Include="VAO.cpp">
-      <Filter>View</Filter>
-    </ClCompile>
-    <ClCompile Include="VBO.cpp">
-      <Filter>View</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>View</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>View</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
       <Filter>View</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
@@ -65,6 +65,60 @@
     </ClCompile>
     <ClCompile Include="LightSource.cpp">
       <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="VBO.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="VAO.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="EBO.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowingCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdPersonCamera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,38 +149,77 @@
     <ClInclude Include="Shader.hpp">
       <Filter>View</Filter>
     </ClInclude>
-    <ClInclude Include="VAO.hpp">
-      <Filter>View</Filter>
-    </ClInclude>
-    <ClInclude Include="VBO.hpp">
-      <Filter>View</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.hpp">
-      <Filter>View</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.hpp">
       <Filter>View</Filter>
     </ClInclude>
     <ClInclude Include="LightSource.hpp">
       <Filter>Models</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_glfw.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_opengl3.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeCamera.hpp">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticCamera.hpp">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.hpp">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.hpp">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="VBO.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="VAO.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EBO.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State.hpp">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowingCamera.hpp">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPersonCamera.hpp">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="smooth_fragment.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="smooth_vertex.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="smooth_tcs.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="smooth_tes.glsl">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Texture.hpp">
-      <Filter>View</Filter>
-    </None>
     <None Include="simple_vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
@@ -137,6 +230,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="light_fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="model_vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="model_fragment.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
